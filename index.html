@@ -1,33 +1,77 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!--We will be using clockstyle css file in order to dictate how the clock will be displayed on the html file-->
-<link rel="stylesheet" type="text/css" href="clockstyle.css">
+  <meta charset="utf-8">
+  <title>Group 1 - Project 2</title>
+
+  <!-- CDN for Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- CDN for Bootstrap theme CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!--We will be using clockstyle css file in order to dictate how the clock will be displayed on the html file-->
+  <link rel="stylesheet" type="text/css" href="clockstyle.css">
 </head>
 <body>
+  <div class="container">
 
-	<!--controls what clock picture will be displayed, default will be the updated base. dimensions 802x802 pixels-->
-  <div class="wrap">
-    <img id="clock-picture" src="clock-base-updated.png" alt="clock-base" width="802" height="802" usemap="#clockmap">
-    <span id="time" class="desc"></span>
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-8"><h1>Rock Chalk JayCLOCK</h1></div>
+          <div class="col-md-4"></div>
+        </div>
+      </div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#clock" aria-controls="clock" role="tab" data-toggle="tab">Clock</a></li>
+        <li role="presentation"><a href="#stopwatch" aria-controls="stopwatch" role="tab" data-toggle="tab">Stopwatch</a></li>
+        <li role="presentation"><a href="#timer" aria-controls="messages" role="tab" data-toggle="tab">Timer</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="clock">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="well">
+                <div id="time"></div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <button id="setbtn" class="btn btn-default" type="button" onclick="toggleSet()">Set</button><br />
+              <button id="12btn" class="btn btn-default" type="button" onclick="set12hrs()">12 hours mode</button><br />
+              <button id="24btn" class="btn btn-default" type="button" onclick="set24hrs()">24 hours mode</button><br />
+              
+              <button id="minbtn" class="btn btn-default" type="button" onclick="decrementTime()">-</button><br />
+              <button id="addbtn" class="btn btn-default" type="button" onclick="incrementTime()">+</button><br />
+              <button id="typebtn" class="btn btn-default" type="button" onclick="toggleType()">Toggle type</button>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="stopwatch">
+          stopwatch to be placed here
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="timer">
+          timer to be placed here
+        </div>
+
+      </div>
+  	
   </div>
-  <!--map of locations on the clock picture--> 
-  <map name="clockmap">
-	<!--area mapping the set button, coordinates of left, top, right, and button, toggleSet function will occur when clicked-->
-    <area id="setbtn" shape="rect" coords="570,325,624,424" onclick="toggleSet()">
-	<!--area mapping the minus button, coordinates of left, top, right, and button, decrementTime function will occur when clicked-->
-    <area id="minbtn" shape="rect" coords="169,672,275,739" onclick="decrementTime()" hidden = true>
-	<!--area mapping the add button, coordinates of left, top, right, and button, incrementTime function will occur when clicked-->
-    <area id="addbtn" shape="rect" coords="559,673,668,742" onclick="incrementTime()" hidden = true>
-	<!--area mapping the type toggle button between hours, minutes, and seconds, coordinates of left, top, right, and button, toggleType function will occur when clicked-->
-    <area id="typebtn" shape="rect" coords="371,583,466,642" onclick="toggleType()" hidden = true>
-	<!--area mapping the 12 hours button, coordinates of left, top, right, and button, set12Hours function will occur when clicked-->
-    <area id="12btn" shape="rect" coords="625,325,676,424" onclick="set12hrs()">
-	<!--area mapping the 24 hours button, coordinates of left, top, right, and button, set24hours function will occur when clicked-->
-    <area id="24btn" shape="rect" coords="677,325,731,424" onclick="set24hrs()">
-  </map>
+
 	<!-- we will be using jquery javascript library in order to create the optimal html page-->
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+  <!-- CDN for Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
   <!-- the main file where clock functionality takes place-->
   <script src="clock.js"></script>
+
 </body>
 </html>
