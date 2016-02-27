@@ -106,24 +106,18 @@ var toggleType = function() {
   {
 	  //toggles setMode to minute 
     setMode = "minute";
-	//switch image to minutes image 
-    document.getElementById("clock-picture").src="clock-set-minutes.png";
   }
   //if setMode is minutes 
   else if(setMode == "minute")
   {
 	  //toggles setMode to second 
     setMode = "second";
-	//switch image to seconds image 
-    document.getElementById("clock-picture").src="clock-set-seconds.png";
   }
   //otherwise, setMode is seconds 
   else
   {
 	  //toggles setMode to hours 
     setMode = "hour";
-	//switch image to hours image 
-    document.getElementById("clock-picture").src="clock-set-hour.png";
   }
 }
 
@@ -279,8 +273,6 @@ var toggleSet = function(){
   if (!run) {
 	  //it's now running 
     run = true;
-	//go to base
-    document.getElementById("clock-picture").src="clock-base-updated.png";
 	//hide setting buttons, don't allow for anything to happen while clicking 
     document.getElementById('minbtn').hidden = true;
     document.getElementById('minbtn').onclick = '';
@@ -293,8 +285,6 @@ var toggleSet = function(){
   else {
 	  //now it's being set 
     run = false;
-	//show hour setting page 
-    document.getElementById("clock-picture").src="clock-set-hour.png";
 	//display setting buttons, react to user clicking buttons 
     document.getElementById('minbtn').hidden = false;
     document.getElementById('minbtn').onclick = decrementTime;
