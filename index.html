@@ -16,10 +16,14 @@
 <body>
   <div class="container">
 
+  	<div id="display">
+
       <div class="page-header">
         <div class="row">
           <div class="col-md-8"><h1>Rock Chalk JayCLOCK</h1></div>
-          <div class="col-md-4"></div>
+          <div class="col-md-4">
+          	<button id="turn-off" class="btn btn-danger btn-lg" type="button"><span class="glyphicon glyphicon-off"></span></button>
+          </div>
         </div>
       </div>
 
@@ -61,6 +65,20 @@
         </div>
 
       </div>
+
+    </div>
+
+    <div id="off-mode" style="display: none;">
+    	<div class="row">
+    		<div class="col-lg-12">
+    			<p class="text-center" style="padding-top: 10%; font-size:50px;">
+    				<button id="turn-on" class="btn btn-success btn-lg" type="button">
+    					<span class="glyphicon glyphicon-off"></span>
+    				</button>
+    			</p>
+    		</div>
+    	</div>
+    </div>
   	
   </div>
 
@@ -72,6 +90,7 @@
 
   <!-- the main file where clock functionality takes place-->
   <script src="clock.js"></script>
+  <script src="on-off.js"></script>
 
 </body>
 </html>
