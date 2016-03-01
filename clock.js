@@ -79,7 +79,7 @@ var setMode = "hour"; //can be "hour", "minute", or "second"
       document.getElementById("time").hidden = false;
 	  //updates current time 
       currentTime.setMilliseconds((currentTime.getMilliseconds() + 500));
-      options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+      //options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
       lastTime = currentTime.toLocaleTimeString('en-US', options);
 	  //updates time's html id
       document.getElementById("time").innerHTML = lastTime;
