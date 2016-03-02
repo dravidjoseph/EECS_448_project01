@@ -1,0 +1,13 @@
+@font-face {
+    font-family: DSEG14Classic;
+    src: url(DSEG14Classic-Bold.ttf);
+}
+/*style choices for the clock*/
+#time {
+	/*font chosen*/
+    font-family: DSEG14Classic;
+	/*color in hexidecimal*/
+    color: #000;
+	/*size of font*/
+    font-size:50px;
+}
