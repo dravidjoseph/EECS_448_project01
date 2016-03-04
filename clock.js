@@ -273,30 +273,13 @@ var set12hrs = function () {
 var toggleSet = function(){
 	//set setmode to hour 
   setMode = "hour";
-	//if it's changed from being set to running 
-  if (!run) {
-	  //it's now running 
-    run = true;
-	//hide setting buttons, don't allow for anything to happen while clicking 
-    document.getElementById('minbtn').hidden = true;
-    document.getElementById('minbtn').onclick = '';
-    document.getElementById('addbtn').hidden = true;
-    document.getElementById('addbtn').onclick = '';
-    document.getElementById('typebtn').hidden = true;
-    document.getElementById('typebtn').onclick = '';
-
-    }
-  else {
-	  //now it's being set 
-    run = false;
-	//display setting buttons, react to user clicking buttons 
-    document.getElementById('minbtn').hidden = false;
-    document.getElementById('minbtn').onclick = decrementTime;
-    document.getElementById('addbtn').hidden = false;
-    document.getElementById('addbtn').onclick = incrementTime;
-    document.getElementById('typebtn').hidden = false;
-    document.getElementById('typebtn').onclick = toggleType;
-  }
+	
+  // toggle running state 
+  run = !run;
+  
+  // toggle panel settings and set button
+  $("#settingsPanel").toggle();
+  $("#setbtn").toggle();
 }
 
 /**
