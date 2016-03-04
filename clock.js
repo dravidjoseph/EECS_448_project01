@@ -61,9 +61,9 @@ var run = true;
  * @name setMode
  * @type string
  * @summary variable that stores what mode is currently being set from options hours, minutes, or seconds 
- * @default = hour
+ * @default = hours
  */
-var setMode = "hour"; //can be "hour", "minute", or "second"
+var setMode = "hours"; //can be "hours", "minutes", or "seconds"
 
 /**
  * @type function 
@@ -102,23 +102,25 @@ var setMode = "hour"; //can be "hour", "minute", or "second"
  */
 var toggleType = function() {
 	//if setMode is on hours 
-  if(setMode == "hour")
+  if(setMode == "hours")
   {
-	  //toggles setMode to minute 
-    setMode = "minute";
+	  //toggles setMode to minutes
+    setMode = "minutes";
   }
   //if setMode is minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
-	  //toggles setMode to second 
-    setMode = "second";
+	  //toggles setMode to seconds
+    setMode = "seconds";
   }
   //otherwise, setMode is seconds 
   else
   {
 	  //toggles setMode to hours 
-    setMode = "hour";
+    setMode = "hours";
   }
+
+  $("#timePart").html(setMode);
 }
 
 /**
@@ -156,13 +158,13 @@ var flashTime = function(){
  * @type function
  * @function incrementTime 
  * @pre clock is in setting mode 
- * @post will increment the hour, minute, or second based on setMode 
- * @summary will add one to the hour minute or second based on setMode, and increment the next interval if needed
+ * @post will increment the hours, minutes, or seconds based on setMode 
+ * @summary will add one to the hours minutes or seconds based on setMode, and increment the next interval if needed
  */
 var incrementTime = function() {
-	//if set mode is effecting the hour 
+	//if set mode is effecting the hours
     document.getElementById("time").hidden = false;
-  if(setMode == "hour")
+  if(setMode == "hours")
   {
 	  //add one to current hours 
     currentTime.setHours((currentTime.getHours() + 1));
@@ -171,7 +173,7 @@ var incrementTime = function() {
     document.getElementById("time").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
 	  //add one to current minutes 
     currentTime.setMinutes((currentTime.getMinutes() + 1));
@@ -194,13 +196,13 @@ var incrementTime = function() {
  * @type function
  * @function decrementTime 
  * @pre clock is in setting mode 
- * @post will decrement the hour, minute, or second based on setMode 
- * @summary will subtract one from the hour minute or second based on setMode, and decrement the next interval if needed
+ * @post will decrement the hours, minutes, or seconds based on setMode 
+ * @summary will subtract one from the hours minutes or seconds based on setMode, and decrement the next interval if needed
  */
 var decrementTime = function() {
 	//if set mode is effecting hours 
     document.getElementById("time").hidden = false;
-  if(setMode == "hour")
+  if(setMode == "hours")
   {
 	  //subtract one from current hours 
     currentTime.setHours((currentTime.getHours() - 1));
@@ -209,7 +211,7 @@ var decrementTime = function() {
     document.getElementById("time").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
 	  //subtract one from current minutes 
     currentTime.setMinutes((currentTime.getMinutes() - 1));
@@ -272,7 +274,7 @@ var set12hrs = function () {
  */
 var toggleSet = function(){
 	//set setmode to hour 
-  setMode = "hour";
+  setMode = "hours";
 	
   // toggle running state 
   run = !run;
