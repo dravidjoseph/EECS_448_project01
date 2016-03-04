@@ -241,6 +241,8 @@ var set24hrs = function () {
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
+    $("#toggleMode").attr("onclick","set12hrs()");
+    $("#toggleMode").html("See in 12 hours mode");
 
 }
 
@@ -257,6 +259,8 @@ var set12hrs = function () {
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
+    $("#toggleMode").attr("onclick","set24hrs()");
+    $("#toggleMode").html("See in 24 hours mode");
 }
 
 /**
