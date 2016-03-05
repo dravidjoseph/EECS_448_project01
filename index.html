@@ -100,7 +100,20 @@
         </div>
 
         <div role="tabpanel" class="tab-pane" id="timer">
-          timer to be placed here
+          <div class="row">
+           <div class="col-md-8">
+             <div class="well">
+               <div id="timer"></div>
+             </div>
+           </div>
+           <div class="col-md-4">
+             <button id="timersetbtn" class="btn btn-default" type="button" onclick="timerSet()">Set</button><br />
+             <button id="startbtn" class="btn btn-default" type="button" onclick="timerStart()">Start</button><br />
+             <button id="pausebtn" class="btn btn-default" type="button" onclick="timerPause()">Pause</button><br />
+             <button id="resumebtn" class="btn btn-default" type="button" onclick="timerResume()">Resume</button><br />
+             <button id="resetbtn" class="btn btn-default" type="button" onclick="timerReset()">Reset</button><br />
+           </div>
+         </div>
         </div>
 
       </div>
