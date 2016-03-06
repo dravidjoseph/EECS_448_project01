@@ -26,19 +26,23 @@ var runTimer = false;
 var setModeTimer = "hours";
 
 function timerTimer() {
-
+  if (currentTimeTimer.getHours() == 0 && currentTimeTimer.getMinutes() == 0 && currentTimeTimer.getSeconds() == 0) {
+    runTimer = false;
+  }
   if (runTimer) {
 
     document.getElementById("timerTimer").hidden = false;
-
     currentTimeTimer.setMilliseconds((currentTimeTimer.getMilliseconds() - 500));
     lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
     document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+
   } else {
     document.getElementById("timerTimer").innerHTML = lastTimeTimer;
     //flashTimeTimer();
   }
 }
+
+
 
 
 var toggleTypeTimer = function() {
@@ -93,22 +97,24 @@ var incrementTimeTimer = function() {
 var decrementTimeTimer = function() {
   document.getElementById("timerTimer").hidden = false;
   if (setModeTimer == "hours") {
-    currentTimeTimer.setHours((currentTimeTimer.getHours() - 1));
-    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+      currentTimeTimer.setHours((currentTimeTimer.getHours() - 1));
+      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   } else if (setModeTimer == "minutes") {
-    currentTimeTimer.setMinutes((currentTimeTimer.getMinutes() - 1));
-    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+      currentTimeTimer.setMinutes((currentTimeTimer.getMinutes() - 1));
+      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   } else {
-    currentTimeTimer.setSeconds((currentTimeTimer.getSeconds() - 1));
-    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+      currentTimeTimer.setSeconds((currentTimeTimer.getSeconds() - 1));
+      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   }
 }
+
+
 
 
 // var set24hrsTimer = function() {
