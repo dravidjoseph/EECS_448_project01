@@ -30,7 +30,6 @@ function timerTimer() {
     runTimer = false;
   }
   if (runTimer) {
-
     document.getElementById("timerTimer").hidden = false;
     currentTimeTimer.setMilliseconds((currentTimeTimer.getMilliseconds() - 500));
     lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
@@ -38,12 +37,11 @@ function timerTimer() {
 
   } else {
     document.getElementById("timerTimer").innerHTML = lastTimeTimer;
-    flashTimeTimer();
+    
+      flashTimeTimer();
+    
   }
 }
-
-
-
 
 var toggleTypeTimer = function() {
   if (setModeTimer == "hours") {
@@ -57,9 +55,7 @@ var toggleTypeTimer = function() {
   $("#timePartTimer").html(setModeTimer);
 }
 
-
 var onTimer = true;
-
 
 var flashTimeTimer = function() {
   if (onTimer) {
@@ -69,7 +65,6 @@ var flashTimeTimer = function() {
     document.getElementById("timerTimer").hidden = true;
     onTimer = true;
   }
-
 }
 
 
@@ -97,20 +92,20 @@ var incrementTimeTimer = function() {
 var decrementTimeTimer = function() {
   document.getElementById("timerTimer").hidden = false;
   if (setModeTimer == "hours") {
-      currentTimeTimer.setHours((currentTimeTimer.getHours() - 1));
-      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+    currentTimeTimer.setHours((currentTimeTimer.getHours() - 1));
+    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   } else if (setModeTimer == "minutes") {
-      currentTimeTimer.setMinutes((currentTimeTimer.getMinutes() - 1));
-      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+    currentTimeTimer.setMinutes((currentTimeTimer.getMinutes() - 1));
+    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   } else {
-      currentTimeTimer.setSeconds((currentTimeTimer.getSeconds() - 1));
-      optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-      lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-      document.getElementById("timerTimer").innerHTML = lastTimeTimer;
+    currentTimeTimer.setSeconds((currentTimeTimer.getSeconds() - 1));
+    optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
+    lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+    document.getElementById("timerTimer").innerHTML = lastTimeTimer;
   }
 }
 
@@ -137,10 +132,8 @@ var decrementTimeTimer = function() {
 //   $("#toggleModeTimer").html("See in 24 hours mode");
 // }
 
-
 var toggleSetTimer = function() {
   setModeTimer = "hours";
-
   $("#settingsPanelTimer").toggle();
   $("#setbtnTimer").toggle();
 }
@@ -152,6 +145,9 @@ var setTimeTimer = function(hours, minutes, seconds) {
   currentTimeTimer.setSeconds(seconds);
 }
 
+var timerflashing = true;
+
+var pausedTimer = false;
 
 function startTimer() {
   runTimer = true;
@@ -159,19 +155,21 @@ function startTimer() {
 
 function pauseTimer() {
   runTimer = false;
+  pausedTimer = true;
 
 }
 
 function resumeTimer() {
-  runTimer = true;
+  if (runTimer == false && pausedTimer == true) {
+    runTimer = true;
+    pausedTimer = false;
+  }
 }
 
 function resetTimer() {
   currentTimeTimer.setHours(0);
   currentTimeTimer.setMinutes(0);
   currentTimeTimer.setSeconds(0);
-
   runTimer = false;
   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-  
 }
