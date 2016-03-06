@@ -13,11 +13,12 @@
   <!--We will be using clockstyle css file in order to dictate how the clock will be displayed on the html file-->
   <link rel="stylesheet" type="text/css" href="clockstyle.css">
 </head>
+<!-- Loads so stopwatch will show -->
 <body onload="show()">
   <div class="container">
 
   	<div id="display">
-
+		<!-- Top of the Page -->
       <div class="page-header">
         <div class="row">
           <div class="col-md-8"><h1>Rock Chalk JayCLOCK</h1></div>
@@ -36,7 +37,7 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-
+		  <!-- Clock Pane -->
         <div role="tabpanel" class="tab-pane active" id="clock">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -83,7 +84,8 @@
           </div>
         </div>
         </div>
-
+		
+		<!-- Stopwatch Pane -->
         <div role="tabpanel" class="tab-pane" id="stopwatch">
          <div class="row">
            <div class="col-md-8">
@@ -103,14 +105,10 @@
              </div>
            </div>
            <div class="col-md-4">
-
            </div>
          </div>
         </div>
-
-
-
-
+		<!-- Timer pane -->
         <div role="tabpanel" class="tab-pane" id="timer">
             <div class="panel-body">
             <div class="row">
@@ -131,15 +129,6 @@
                   <button id="reset" class="btn btn-default" type="button" onclick="resetTimer()">Reset</button>
                 </div>
                 <div class="btn-group btn-group-lg" role="group">
-                 <!--  <button id="toggleModeTimer" class="btn btn-primary btn-lg" type="button" onclick="set24hrsTimer()">
-                    See in 24 hours mode
-                  </button> -->
-                  <!-- <button id="zoomOutTimer" class="btn btn-default btn-lg" type="button">
-                    Zoom <span class="glyphicon glyphicon-zoom-out"></span>
-                  </button>
-                  <button id="zoomInTimer" class="btn btn-default btn-lg" type="button">
-                    Zoom <span class="glyphicon glyphicon-zoom-in">
-                  </button> -->
                 </div>
               </div>
               <div class="col-md-4 text-center">
@@ -168,14 +157,9 @@
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
-
+	<!-- Off button -->
     <div id="off-mode" style="display: none;">
     	<div class="row">
     		<div class="col-lg-12">
@@ -196,7 +180,7 @@
   <!-- CDN for Bootstrap JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-  <!-- the main file where clock functionality takes place-->
+  <!-- the main files where clock functionality takes place-->
   <script src="clock.js"></script>
   <script src="on-off.js"></script>
   <script src="zoom.js"></script>

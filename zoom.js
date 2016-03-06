@@ -1,5 +1,5 @@
-var minSize = 10;
-var maxSize = 90;
+var minSize = 10;	//minimum font size
+var maxSize = 90;	//maximum font side
 
 $('#zoomIn').click(function(){    
 	fontSize= parseInt($('#time').css('font-size'));
