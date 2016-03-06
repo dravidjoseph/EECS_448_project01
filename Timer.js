@@ -25,6 +25,7 @@ var runTimer = false;
 
 var setModeTimer = "hours";
 
+
 function timerTimer() {
   if (currentTimeTimer.getHours() == 0 && currentTimeTimer.getMinutes() == 0 && currentTimeTimer.getSeconds() == 0) {
     runTimer = false;
@@ -145,24 +146,34 @@ var setTimeTimer = function(hours, minutes, seconds) {
   currentTimeTimer.setSeconds(seconds);
 }
 
+$("#resume").hide();
+
 var timerflashing = true;
 
 var pausedTimer = false;
 
 function startTimer() {
   runTimer = true;
+  $("#resume").hide();
 }
 
 function pauseTimer() {
   runTimer = false;
   pausedTimer = true;
   timerflashing = false;
+  $("#pause").hide();
+  $("#resume").show();
+
+  document.getElementById("button-id-you-want-to-change").innerHTML = "new-name-of-button"
+
 }
 
 function resumeTimer() {
   if (runTimer == false && pausedTimer == true) {
     runTimer = true;
     pausedTimer = false;
+    $("#resume").hide();
+    $("#pause").show();
   }
 }
 
@@ -173,9 +184,4 @@ function resetTimer() {
   runTimer = false;
   timerflashing = true;
   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-}
-
-function togglePauseResume()
-{
-
 }
