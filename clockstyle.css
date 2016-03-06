@@ -19,3 +19,11 @@
 	/*size of font*/
     font-size:50px;
 }
+#timerTimer {
+	/*font chosen*/
+    font-family: DSEG14Classic;
+	/*color in hexidecimal*/
+    color: #000;
+	/*size of font*/
+    font-size:50px;
+}
