@@ -249,7 +249,31 @@ var incrementTime = function() {
 var decrementTime = function() {
 	//if set mode is effecting hours 
     document.getElementById("time").hidden = false;
-  if(setMode == "hours")
+  if(setMode == "month")
+  {
+    //add one to current days 
+    currentTime.setMonth((currentTime.getMonth() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "day")
+  {
+    //add one to current day
+    currentTime.setDate((currentTime.getDate() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "year")
+  {
+    //add one to current year 
+    currentTime.setYear((currentTime.getFullYear() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "hours")
   {
 	  //subtract one from current hours 
     currentTime.setHours((currentTime.getHours() - 1));
