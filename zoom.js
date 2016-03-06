@@ -56,3 +56,30 @@ $('#zoomOutSW').click(function(){
 		$("#zoomOutSW").attr("disabled",true);
 	}
 });  
+$('#zoomInTimer').click(function(){    
+	fontSize= parseInt($('#timerTimer').css('font-size'));
+	newFontSize = fontSize + 10;
+
+	if(newFontSize <= maxSize){
+		$("#zoomOutTimer").attr("disabled",false);
+		$('#timerTimer').css('font-size', newFontSize);
+	}
+
+	if(newFontSize==maxSize){
+		$("#zoomInTimer").attr("disabled",true);
+	}
+});
+
+$('#zoomOutTimer').click(function(){
+	fontSize= parseInt($('#timerTimer').css('font-size'));
+	newFontSize = fontSize - 10;
+
+	if(newFontSize >= minSize){
+		$("#zoomInTimer").attr("disabled",false);
+		$('#timerTimer').css('font-size', newFontSize);
+	}
+
+	if(newFontSize==minSize){
+		$("#zoomOutTimer").attr("disabled",true);
+	}
+});  
