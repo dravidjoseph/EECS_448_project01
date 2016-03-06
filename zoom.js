@@ -1,6 +1,13 @@
 var minSize = 10;	//minimum font size
 var maxSize = 90;	//maximum font side
 
+
+/**
+ * @name zoomIn
+ * @function click
+ * @summary Zooms in the clock
+ *
+ */
 $('#zoomIn').click(function(){    
 	fontSize= parseInt($('#time').css('font-size'));
 	newFontSize = fontSize + 10;
@@ -15,6 +22,12 @@ $('#zoomIn').click(function(){
 	}
 });
 
+/**
+ * @name zoomOut
+ * @function click
+ * @summary Zooms Out the clock
+ *
+ */
 $('#zoomOut').click(function(){
 	fontSize= parseInt($('#time').css('font-size'));
 	newFontSize = fontSize - 10;
@@ -29,6 +42,12 @@ $('#zoomOut').click(function(){
 	}
 });
 
+/**
+ * @name zoomIn
+ * @function click
+ * @summary Zooms in the stopwatch
+ *
+ */
 $('#zoomInSW').click(function(){    
 	fontSize= parseInt($('#stop').css('font-size'));
 	newFontSize = fontSize + 10;
@@ -43,6 +62,12 @@ $('#zoomInSW').click(function(){
 	}
 });
 
+/**
+ * @name zoomIn
+ * @function click
+ * @summary Zooms out the stopwatch
+ *
+ */
 $('#zoomOutSW').click(function(){
 	fontSize= parseInt($('#stop').css('font-size'));
 	newFontSize = fontSize - 10;
@@ -55,7 +80,13 @@ $('#zoomOutSW').click(function(){
 	if(newFontSize==minSize){
 		$("#zoomOutSW").attr("disabled",true);
 	}
-});  
+});
+/**
+ * @name zoomInTimer
+ * @function click
+ * @summary Zooms in the timer
+ *
+ */  
 $('#zoomInTimer').click(function(){    
 	fontSize= parseInt($('#timerTimer').css('font-size'));
 	newFontSize = fontSize + 10;
@@ -69,7 +100,12 @@ $('#zoomInTimer').click(function(){
 		$("#zoomInTimer").attr("disabled",true);
 	}
 });
-
+/**
+ * @name zoomOutTimer
+ * @function click
+ * @summary Zooms in the timer
+ *
+ */
 $('#zoomOutTimer').click(function(){
 	fontSize= parseInt($('#timerTimer').css('font-size'));
 	newFontSize = fontSize - 10;
