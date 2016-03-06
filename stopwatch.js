@@ -80,11 +80,13 @@ function start() {
 
 function stop() {
 	stopWatch.stop();
+	document.getElementById("swstart").innerHTML = "Go";
 	clearInterval(clockTimeInterval);
 }
 
 function swReset() {
 	stop();
 	stopWatch.reset();
+	document.getElementById("swstart").innerHTML = "Start";
 	update();
 }

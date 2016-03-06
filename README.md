@@ -10,7 +10,10 @@ This project was an extension of Liia Butler, Josiah Gray, and Paul McElroy's cl
 	c. See the hour, minutes and seconds.
 2. Stop Watch Mode
 	a. Start the stopwatch.
-	b. 
+	b. Stop the stopwatch and display the elapsed time at that moment.
+	c. Resume the stopwatch from that moment.
+	d. Reset the stopwatch to zero.
+3. 
 ##Description
 
 ##Challenges
