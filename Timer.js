@@ -37,9 +37,9 @@ function timerTimer() {
 
   } else {
     document.getElementById("timerTimer").innerHTML = lastTimeTimer;
-    
+    if (timerflashing == true) {
       flashTimeTimer();
-    
+    }
   }
 }
 
@@ -156,7 +156,7 @@ function startTimer() {
 function pauseTimer() {
   runTimer = false;
   pausedTimer = true;
-
+  timerflashing = false;
 }
 
 function resumeTimer() {
@@ -171,5 +171,11 @@ function resetTimer() {
   currentTimeTimer.setMinutes(0);
   currentTimeTimer.setSeconds(0);
   runTimer = false;
+  timerflashing = true;
   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
+}
+
+function togglePauseResume()
+{
+
 }
