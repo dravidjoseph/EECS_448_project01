@@ -155,6 +155,7 @@ var pausedTimer = false;
 function startTimer() {
   runTimer = true;
   $("#resume").hide();
+  $("#pause").show();
 }
 
 function pauseTimer() {
