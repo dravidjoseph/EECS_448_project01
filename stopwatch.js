@@ -77,18 +77,18 @@ var setMode = "hours"; //can be "hours", "minutes", or "seconds"
 	 //if clock is running 
     if (run) {
 		//make sure time is being displayed 
-      document.getElementById("time").hidden = false;
+      document.getElementById("stop").hidden = false;
 	  //updates current time 
       currentTime.setMilliseconds((currentTime.getMilliseconds() + 500));
       //options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
       lastTime = currentTime.toLocaleTimeString('en-US', options);
 	  //updates time's html id
-      document.getElementById("time").innerHTML = lastTime;
+      document.getElementById("stop").innerHTML = lastTime;
     }
 	//if clock is being set
     else {
 		//updates time's html id 
-      document.getElementById("time").innerHTML = lastTime;
+      document.getElementById("stop").innerHTML = lastTime;
 	  //make clock string flash to represent it being set
       flashTime();
     }
@@ -142,13 +142,13 @@ var flashTime = function(){
 	//if time string should be on 
     if(on){
 		//show time string 
-        document.getElementById("time").hidden = false;
+        document.getElementById("stop").hidden = false;
 		//next time flashTime is called, time should go to false 
         on = false;
 		//time string should be off 
     } else {
 		//hide time string 
-        document.getElementById("time").hidden = true;
+        document.getElementById("stop").hidden = true;
 		//next time flashTime is called, time should go to true 
         on = true;
     }
@@ -164,14 +164,14 @@ var flashTime = function(){
  */
 var incrementTime = function() {
 	//if set mode is effecting the hours
-    document.getElementById("time").hidden = false;
+    document.getElementById("stop").hidden = false;
   if(setMode == "hours")
   {
 	  //add one to current hours 
     currentTime.setHours((currentTime.getHours() + 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
   else if(setMode == "minutes")
@@ -180,7 +180,7 @@ var incrementTime = function() {
     currentTime.setMinutes((currentTime.getMinutes() + 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options); 
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
   //if set mode is effecting seconds 
   else
@@ -189,7 +189,7 @@ var incrementTime = function() {
     currentTime.setSeconds((currentTime.getSeconds() + 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
 }
 
@@ -202,14 +202,14 @@ var incrementTime = function() {
  */
 var decrementTime = function() {
 	//if set mode is effecting hours 
-    document.getElementById("time").hidden = false;
+    document.getElementById("stop").hidden = false;
   if(setMode == "hours")
   {
 	  //subtract one from current hours 
     currentTime.setHours((currentTime.getHours() - 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
   else if(setMode == "minutes")
@@ -218,7 +218,7 @@ var decrementTime = function() {
     currentTime.setMinutes((currentTime.getMinutes() - 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
   //if set mode is effecting seconds 
   else
@@ -227,7 +227,7 @@ var decrementTime = function() {
     currentTime.setSeconds((currentTime.getSeconds() - 1));
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
   }
 }
 
@@ -243,7 +243,7 @@ var set24hrs = function () {
     milTime = true;
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
     $("#toggleMode").attr("onclick","set12hrs()");
     $("#toggleMode").html("See in 12 hours mode");
 
@@ -261,7 +261,7 @@ var set12hrs = function () {
     milTime = false;
     options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
     lastTime = currentTime.toLocaleTimeString('en-US', options);
-    document.getElementById("time").innerHTML = lastTime;
+    document.getElementById("stop").innerHTML = lastTime;
     $("#toggleMode").attr("onclick","set24hrs()");
     $("#toggleMode").html("See in 24 hours mode");
 }
