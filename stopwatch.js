@@ -1,7 +1,9 @@
+
 /**
-*Thanks to Giulia Alfonsi at github.com/electrig for WatchObject inspiration
-*
-*/
+ * Clock.js
+ * @author Dravid Joseph
+* Thanks to Giulia Alfonsi at github.com/electrig for WatchObject inspiration
+ */
 
 var	stopWatchObject = function() {
 		// Private vars
