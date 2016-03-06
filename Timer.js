@@ -120,20 +120,19 @@ var setTimeTimer = function(hours, minutes, seconds) {
 }
 
 $("#resume").hide();
+$("#pause").hide();
 
 var timerflashing = true;
-
-var pausedTimer = false;
 
 function startTimer() {
   runTimer = true;
   $("#resume").hide();
   $("#pause").show();
+  $("#start").hide();
 }
 
 function pauseTimer() {
   runTimer = false;
-  pausedTimer = true;
   timerflashing = false;
   $("#pause").hide();
   $("#resume").show();
@@ -141,9 +140,8 @@ function pauseTimer() {
 }
 
 function resumeTimer() {
-  if (runTimer == false && pausedTimer == true) {
+  if (runTimer == false) {
     runTimer = true;
-    pausedTimer = false;
     $("#resume").hide();
     $("#pause").show();
   }
@@ -153,6 +151,9 @@ function resetTimer() {
   currentTimeTimer.setHours(0);
   currentTimeTimer.setMinutes(0);
   currentTimeTimer.setSeconds(0);
+  $("#start").show();
+  $("#pause").hide();
+  $("#resume").hide();
   runTimer = false;
   timerflashing = true;
   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
