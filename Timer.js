@@ -38,7 +38,7 @@ function timerTimer() {
 
   } else {
     document.getElementById("timerTimer").innerHTML = lastTimeTimer;
-    //flashTimeTimer();
+    flashTimeTimer();
   }
 }
 
