@@ -1,13 +1,9 @@
 /**
  * Clock.js
- * @author Josiah Gray, Liia Butler, Paul McElroy
+ * @author Josiah Gray, Liia Butler, Paul McElroy, Francinaldo Almeida
  */
  //author, constructor, default, description, event, function, global
  //param, public, NAME, returns, pre, post, SUMMARY, type
-/**
- <!-- The timer() function and the use of setInterval were modeled on the script from here:
-http://www.w3schools.com/js/js_timing.asp
--->*/
 //date is a built in javascript method that is based on time value since 01/01/70
 /**
  * @name currentTime 
@@ -22,7 +18,7 @@ var currentTime = new Date();
  */
 var lastTime = currentTime;
 /**
- * @name timeInterval
+ * @name timerInterval
  * @function setInterval(function, interval) 
  * @summary named function to use to call given function after given interval in milliseconds
  * @param function = function to be evaluated after set time
@@ -61,11 +57,20 @@ var run = true;
 /**
  * @name setMode
  * @type string
- * @summary variable that stores what mode is currently being set from options hours, minutes, or seconds 
+ * @summary can be "month", "day", "year", "hours", "minutes", or "seconds" 
  * @default = hours
  */
-var setMode = "month"; //can be "month", "day", "year", "hours", "minutes", or "seconds"
+var setMode = "month"; 
 
+
+/**
+ * @type function 
+ * @function setOptions
+ * @param milTime
+ * @pre valid milTIme
+ * @post ensures proper elements are displayed, if clock is running, will update clock 
+ * @summary Displays proper options
+ */
 function setOptions(milTime){
   return {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
 }
