@@ -107,18 +107,18 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="well" style="min-height: 185px;">
-                  <div id="timeTimer"></div>
+                  <div id="timerTimer"></div>
                 </div>
                 <div class="btn-group btn-group-lg" role="group">
-                  <button id="toggleModeTimer" class="btn btn-primary btn-lg" type="button" onclick="set24hrsTimer()">
+                 <!--  <button id="toggleModeTimer" class="btn btn-primary btn-lg" type="button" onclick="set24hrsTimer()">
                     See in 24 hours mode
-                  </button>
-                  <button id="zoomOutTimer" class="btn btn-default btn-lg" type="button">
+                  </button> -->
+                  <!-- <button id="zoomOutTimer" class="btn btn-default btn-lg" type="button">
                     Zoom <span class="glyphicon glyphicon-zoom-out"></span>
                   </button>
                   <button id="zoomInTimer" class="btn btn-default btn-lg" type="button">
                     Zoom <span class="glyphicon glyphicon-zoom-in">
-                  </button>
+                  </button> -->
                 </div>
               </div>
               <div class="col-md-4 text-center">
@@ -142,6 +142,13 @@
                   </div>
                 </div>
                 <button id="setbtnTimer" class="btn btn-default btn-lg" type="button" onclick="toggleSetTimer()">Set Clock</button>
+                <br>
+
+                <button id="start" class="btn btn-default" type="button" onclick="startTimer()">Start</button><br />
+                <button id="pause" class="btn btn-default" type="button" onclick="pauseTimer()">Pause</button><br />
+                <button id="resume" class="btn btn-default" type="button" onclick="resumeTimer()">Resume</button><br />
+                <button id="reset" class="btn btn-default" type="button" onclick="resetTimer()">Reset</button><br />
+
               </div>
             </div>
           </div>
