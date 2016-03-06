@@ -1,6 +1,6 @@
 /**
  * Timer.js
- * @author Jinuk Park
+ * @author Josiah Gray, Liia Butler, Paul McElroy, and Jinuk Park
  */
 
 
@@ -17,7 +17,6 @@ var timerIntervalTimer = setInterval(timerTimer, 500);
 var milTimeTimer = true;
 
 lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', { hour12: !(milTimeTimer) });
-
 
 var optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
 
@@ -52,7 +51,6 @@ var toggleTypeTimer = function() {
   } else {
     setModeTimer = "hours";
   }
-
   $("#timePartTimer").html(setModeTimer);
 }
 
@@ -67,7 +65,6 @@ var flashTimeTimer = function() {
     onTimer = true;
   }
 }
-
 
 var incrementTimeTimer = function() {
   document.getElementById("timerTimer").hidden = false;
@@ -89,7 +86,6 @@ var incrementTimeTimer = function() {
   }
 }
 
-
 var decrementTimeTimer = function() {
   document.getElementById("timerTimer").hidden = false;
   if (setModeTimer == "hours") {
@@ -110,29 +106,6 @@ var decrementTimeTimer = function() {
   }
 }
 
-
-
-
-// var set24hrsTimer = function() {
-//   milTimeTimer = true;
-//   optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-//   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-//   document.getElementById("timerTimer").innerHTML = lastTimeTimer;
-//   $("#toggleModeTimer").attr("onclick", "set12hrsTimer()");
-//   $("#toggleModeTimer").html("See in 12 hours mode");
-
-// }
-
-
-// var set12hrsTimer = function() {
-//   milTimeTimer = false;
-//   optionsTimer = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTimeTimer };
-//   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
-//   document.getElementById("timerTimer").innerHTML = lastTimeTimer;
-//   $("#toggleModeTimer").attr("onclick", "set24hrsTimer()");
-//   $("#toggleModeTimer").html("See in 24 hours mode");
-// }
-
 var toggleSetTimer = function() {
   setModeTimer = "hours";
   $("#settingsPanelTimer").toggle();
@@ -147,32 +120,28 @@ var setTimeTimer = function(hours, minutes, seconds) {
 }
 
 $("#resume").hide();
+$("#pause").hide();
 
 var timerflashing = true;
-
-var pausedTimer = false;
 
 function startTimer() {
   runTimer = true;
   $("#resume").hide();
   $("#pause").show();
+  $("#start").hide();
 }
 
 function pauseTimer() {
   runTimer = false;
-  pausedTimer = true;
   timerflashing = false;
   $("#pause").hide();
   $("#resume").show();
-
   document.getElementById("button-id-you-want-to-change").innerHTML = "new-name-of-button"
-
 }
 
 function resumeTimer() {
-  if (runTimer == false && pausedTimer == true) {
+  if (runTimer == false) {
     runTimer = true;
-    pausedTimer = false;
     $("#resume").hide();
     $("#pause").show();
   }
@@ -182,6 +151,9 @@ function resetTimer() {
   currentTimeTimer.setHours(0);
   currentTimeTimer.setMinutes(0);
   currentTimeTimer.setSeconds(0);
+  $("#start").show();
+  $("#pause").hide();
+  $("#resume").hide();
   runTimer = false;
   timerflashing = true;
   lastTimeTimer = currentTimeTimer.toLocaleTimeString('en-US', optionsTimer);
