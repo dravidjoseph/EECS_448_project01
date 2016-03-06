@@ -68,10 +68,13 @@ With the exception of Francinaldo, none of the team members had any experience i
 
 ###Assigning Tasks
 
-Since more tasks needed to be accomplished, it was easier to divide tasks by functionality rather than by class files.
+Since more tasks needed to be accomplished, it was easier to divide tasks by functionality rather than by class files, as described as above.  The team was active on Slack; whenever there were questions or extra functionality that needed to be added, a team member would go and add the functionality.  Even though there were nominal divisions of labor, team members took the initiative to fix problems that arose, assuming the fix was trivial enough.
 
-   
-
+  
 ##Future Functionality
 
+Our primary concern was ensuring the clock met all of the requirements and did so in a manner that was relatively elegant and intuitive.  With that said, a lap timer for the stopwatch (as evidenced by the naming of some variables) was considered.  An audible alarm for the timer to alert the user was also considered.  Ultimately, the clock's required functionality proved to be enough of a challenge to consume the team's time.
+
 ##Retrospective
+
+First, we probably should have started slightly earlier.  Due to scheduling constraints, Richard was unable to participate as much as he would have liked.  Also, we would have been able to extend the functionality if we had more time.  Overall, this project required much more sharing of tasks and resources, and required the team to communicate on a level that was not really required by the first project.  The team rose to the challenge and ultimately delivered an extended clock that both meets and exceeds the stated requirements.  We are clearly starting to gel as a team and it is easier to recognize the assets that each team member brings to the table.
