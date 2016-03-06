@@ -51,7 +51,7 @@ lastTime = currentTime.toLocaleTimeString('en-US', {hour12: !(milTime)});
  * @summary variable for clock display options
  *
  */
-var options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+var options = {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
 /**
  * @name run
  * @type Boolean
@@ -64,7 +64,11 @@ var run = true;
  * @summary variable that stores what mode is currently being set from options hours, minutes, or seconds 
  * @default = hours
  */
-var setMode = "hours"; //can be "hours", "minutes", or "seconds"
+var setMode = "month"; //can be "month", "day", "year", "hours", "minutes", or "seconds"
+
+function setOptions(milTime){
+  return {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+}
 
 /**
  * @type function 
@@ -81,7 +85,7 @@ var setMode = "hours"; //can be "hours", "minutes", or "seconds"
 	  //updates current time 
       currentTime.setMilliseconds((currentTime.getMilliseconds() + 500));
       //options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
-      lastTime = currentTime.toLocaleTimeString('en-US', options);
+      lastTime = currentTime.toLocaleString('en-US', options);
 	  //updates time's html id
       document.getElementById("time").innerHTML = lastTime;
     }
@@ -102,8 +106,26 @@ var setMode = "hours"; //can be "hours", "minutes", or "seconds"
  * @summary Toggles through each type of set mode as the click comes in from the user, updates setMode variable and the image being displayed in browser 
  */
 var toggleType = function() {
-	//if setMode is on hours 
-  if(setMode == "hours")
+	//if setMode is on month 
+  if(setMode == "month")
+  {
+    //toggles setMode to day
+    setMode = "day";
+  }
+  //if setMode is on day 
+  else if(setMode == "day")
+  {
+    //toggles setMode to year
+    setMode = "year";
+  }
+  //if setMode is on year 
+  else if(setMode == "year")
+  {
+    //toggles setMode to hours
+    setMode = "hours";
+  }
+  //if setMode is on hours 
+  else if(setMode == "hours")
   {
 	  //toggles setMode to minutes
     setMode = "minutes";
@@ -117,8 +139,8 @@ var toggleType = function() {
   //otherwise, setMode is seconds 
   else
   {
-	  //toggles setMode to hours 
-    setMode = "hours";
+	  //toggles setMode to month 
+    setMode = "month";
   }
 
   $("#timePart").html(setMode);
@@ -163,13 +185,37 @@ var flashTime = function(){
  * @summary will add one to the hours minutes or seconds based on setMode, and increment the next interval if needed
  */
 var incrementTime = function() {
-	//if set mode is effecting the hours
+	//if set mode is effecting the days
     document.getElementById("time").hidden = false;
-  if(setMode == "hours")
+  if(setMode == "month")
+  {
+    //add one to current days 
+    currentTime.setMonth((currentTime.getMonth() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "day")
+  {
+    //add one to current day
+    currentTime.setDate((currentTime.getDate() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "year")
+  {
+    //add one to current year 
+    currentTime.setYear((currentTime.getFullYear() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "hours")
   {
 	  //add one to current hours 
     currentTime.setHours((currentTime.getHours() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -178,7 +224,7 @@ var incrementTime = function() {
   {
 	  //add one to current minutes 
     currentTime.setMinutes((currentTime.getMinutes() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options); 
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -187,7 +233,7 @@ var incrementTime = function() {
   {
 	  //add one to current seconds 
     currentTime.setSeconds((currentTime.getSeconds() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -207,7 +253,7 @@ var decrementTime = function() {
   {
 	  //subtract one from current hours 
     currentTime.setHours((currentTime.getHours() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -216,7 +262,7 @@ var decrementTime = function() {
   {
 	  //subtract one from current minutes 
     currentTime.setMinutes((currentTime.getMinutes() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -225,7 +271,7 @@ var decrementTime = function() {
   {
 	  //subract one from current seconds 
     currentTime.setSeconds((currentTime.getSeconds() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -241,7 +287,7 @@ var decrementTime = function() {
 var set24hrs = function () {
 
     milTime = true;
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
     $("#toggleMode").attr("onclick","set12hrs()");
@@ -259,7 +305,7 @@ var set24hrs = function () {
 var set12hrs = function () {
 
     milTime = false;
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
     $("#toggleMode").attr("onclick","set24hrs()");
@@ -275,7 +321,7 @@ var set12hrs = function () {
  */
 var toggleSet = function(){
 	//set setmode to hour 
-  setMode = "hours";
+  setMode = "month";
 	
   // toggle running state 
   run = !run;
