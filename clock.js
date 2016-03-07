@@ -349,8 +349,9 @@ var set12hrs = function () {
  * @summary if user toggles set button, function will ensure setMode goes to default hours, run will toggle to true or false and displayed documents will react accordiningly.
  */
 var toggleSet = function(){
-	//set setmode to hour 
+	//set setmode to month 
   setMode = "month";
+  $("#timePart").html(setMode);
 	
   // toggle running state 
   run = !run;
