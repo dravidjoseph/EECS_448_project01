@@ -207,6 +207,7 @@ var decrementTimeTimer = function() {
  */
 var toggleSetTimer = function() {
   setModeTimer = "hours";
+  $("#timePartTimer").html(setModeTimer);
   $("#settingsPanelTimer").toggle();
   $("#setbtnTimer").toggle();
 }
