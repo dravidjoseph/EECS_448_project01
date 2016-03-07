@@ -47,7 +47,7 @@ Along with the documentation, Dravid organized the repo, removing unneeded asset
 
 Jinuk was responsible for the Timer functionality.  Using the clock.js as a base for his implementation, he managed to create a fully-functioning timer tab.
 
-Richard was responsible for date/time functionality, creating the initial architecture for displaying the correct day of the week.       
+Richard was responsible for date/time functionality, creating the initial architecture for displaying the correct day of the week.  He also worked on the UML diagrams that were required for the project.       
 
 ##Challenges
 
@@ -77,4 +77,4 @@ Our primary concern was ensuring the clock met all of the requirements and did s
 
 ##Retrospective
 
-First, we probably should have started slightly earlier.  Due to scheduling constraints, Richard was unable to participate as much as he would have liked.  Also, we would have been able to extend the functionality if we had more time.  Overall, this project required much more sharing of tasks and resources, and required the team to communicate on a level that was not really required by the first project.  The team rose to the challenge and ultimately delivered an extended clock that both meets and exceeds the stated requirements.  We are clearly starting to gel as a team and it is easier to recognize the assets that each team member brings to the table.
+First, we probably should have started slightly earlier.  Also, we would have been able to extend the functionality if we had more time.  Overall, this project required much more sharing of tasks and resources, and required the team to communicate on a level that was not really required by the first project.  The team rose to the challenge and ultimately delivered an extended clock that both meets and exceeds the stated requirements.  We are clearly starting to gel as a team and it is easier to recognize the assets that each team member brings to the table.
