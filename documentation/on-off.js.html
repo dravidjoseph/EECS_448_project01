@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: on-off.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: on-off.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @type function
+ * @function on-off
+ * @param #turn-off = turns off display
+ * @param #display = shows or hides display
+ * @param #off-mode = shows or hides off-mode screen
+ * @pre valid parameters
+ * @post updates screen
+ * @summary turns "off the screen"
+ */
 
+$(function(){
+	$("#turn-off").click(function() {
+		$("#display").hide();
+		$("#off-mode").show();
+	});
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+	$("#turn-on").click(function() {
+		$("#off-mode").hide();
+		$("#display").show();
+	});
+});
+</code></pre>
+        </article>
+    </section>
 
 
 
