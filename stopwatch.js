@@ -2,9 +2,16 @@
 /**
  * Clock.js
  * @author Dravid Joseph
-* Thanks to Giulia Alfonsi at github.com/electrig for WatchObject inspiration
  */
 
+
+/**
+ * @type object
+ * @function stopWatchObject
+ * @pre none 
+ * @post encapsulates all stopwatch information
+ * @summary creates an object that handles timer functionality
+ */
 var	stopWatchObject = function() {
 		// Private vars
 		var	startAt	= 0;	// Time of last start / resume. (0 if not running)
@@ -39,15 +46,49 @@ var	stopWatchObject = function() {
 			};
 	};
 
+/**
+ * @name stopWatch
+ * @type stopWatchObject
+ * @summary Instance of stopWatchObject
+ */
 var stopWatch = new stopWatchObject();
+
+/**
+ * @name timeHTML
+ * @type Object
+ * @summary Holds contents of time div
+ */
 var timeHTML;
+
+/**
+ * @name clockTimeInterval
+ * @type function
+ * @summary stores setInterval
+ */
 var clockTimeInterval;
 
+/**
+ * @type function 
+ * @function padTimeString
+ * @param num
+ * @param size
+ * @pre valid milliseconds string and valid size
+ * @post pads the millisecond time into a string so it formats properly
+ * @summary returns the proper padded string
+ */
 function padTimeString(num, size) {
 	var stopWatchString = "0000" + num;
 	return stopWatchString.substr(stopWatchString.length - size);
 }
 
+/**
+ * @type function 
+ * @function formatTimeString
+ * @param time
+ * @pre Valid time string
+ * @post formatted time string
+ * @summary Formats the time for the stopwatch div
+ */
 function formatTimeString(time) {
 	var hours = 0;
 	var minutes = 0;
@@ -66,26 +107,61 @@ function formatTimeString(time) {
 	return newTime;
 }
 
+/**
+ * @type function 
+ * @function show
+ * @pre None
+ * @post loads stopwatch to page right away
+ * @summary Page load for stopwatch
+ */
 function show() {
 	timeHTML = document.getElementById('stop');
 	update();
 }
 
+/**
+ * @type function 
+ * @function update
+ * @pre None
+ * @post updates time div with correct time 
+ * @summary Updates clock
+ */
 function update() {
 	timeHTML.innerHTML = formatTimeString(stopWatch.time());
 }
 
+/**
+ * @type function 
+ * @function start
+ * @pre None
+ * @post starts clock and initializes clockTimeInterval
+ * @summary starts clock
+ */
 function start() {
 	clockTimeInterval = setInterval("update()", 1);
 	stopWatch.start();
 }
 
+/**
+ * @type function 
+ * @function stop
+ * @pre valid milTIme
+ * @post stops stopwatch
+ * @summary stops the stopwatch with correct time, while reformatting the Start button
+ */
 function stop() {
 	stopWatch.stop();
 	document.getElementById("swstart").innerHTML = "Go";
 	clearInterval(clockTimeInterval);
 }
 
+/**
+ * @type function 
+ * @function swReset * @param milTime
+ * @pre None
+ * @post resets stopwatch
+ * @summary resets stopwatch updating button as needed
+ */
 function swReset() {
 	stop();
 	stopWatch.reset();
