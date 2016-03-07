@@ -28,13 +28,10 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * Clock.js
- * @author Josiah Gray, Liia Butler, Paul McElroy
+ * @author Josiah Gray, Liia Butler, Paul McElroy, Francinaldo Almeida
  */
  //author, constructor, default, description, event, function, global
  //param, public, NAME, returns, pre, post, SUMMARY, type
- &lt;!-- The timer() function and the use of setInterval were modeled on the script from here:
-http://www.w3schools.com/js/js_timing.asp
--->
 //date is a built in javascript method that is based on time value since 01/01/70
 /**
  * @name currentTime 
@@ -49,7 +46,7 @@ var currentTime = new Date();
  */
 var lastTime = currentTime;
 /**
- * @name timeInterval
+ * @name timerInterval
  * @function setInterval(function, interval) 
  * @summary named function to use to call given function after given interval in milliseconds
  * @param function = function to be evaluated after set time
@@ -78,7 +75,7 @@ lastTime = currentTime.toLocaleTimeString('en-US', {hour12: !(milTime)});
  * @summary variable for clock display options
  *
  */
-var options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+var options = {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
 /**
  * @name run
  * @type Boolean
@@ -88,10 +85,23 @@ var run = true;
 /**
  * @name setMode
  * @type string
- * @summary variable that stores what mode is currently being set from options hours, minutes, or seconds 
- * @default = hour
+ * @summary can be "month", "day", "year", "hours", "minutes", or "seconds" 
+ * @default = hours
  */
-var setMode = "hour"; //can be "hour", "minute", or "second"
+var setMode = "month"; 
+
+
+/**
+ * @type function 
+ * @function setOptions
+ * @param milTime
+ * @pre valid milTIme
+ * @post ensures proper elements are displayed, if clock is running, will update clock 
+ * @summary Displays proper options
+ */
+function setOptions(milTime){
+  return {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+}
 
 /**
  * @type function 
@@ -107,8 +117,8 @@ var setMode = "hour"; //can be "hour", "minute", or "second"
       document.getElementById("time").hidden = false;
 	  //updates current time 
       currentTime.setMilliseconds((currentTime.getMilliseconds() + 500));
-      options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
-      lastTime = currentTime.toLocaleTimeString('en-US', options);
+      //options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+      lastTime = currentTime.toLocaleString('en-US', options);
 	  //updates time's html id
       document.getElementById("time").innerHTML = lastTime;
     }
@@ -129,30 +139,44 @@ var setMode = "hour"; //can be "hour", "minute", or "second"
  * @summary Toggles through each type of set mode as the click comes in from the user, updates setMode variable and the image being displayed in browser 
  */
 var toggleType = function() {
-	//if setMode is on hours 
-  if(setMode == "hour")
+	//if setMode is on month 
+  if(setMode == "month")
   {
-	  //toggles setMode to minute 
-    setMode = "minute";
-	//switch image to minutes image 
-    document.getElementById("clock-picture").src="clock-set-minutes.png";
+    //toggles setMode to day
+    setMode = "day";
+  }
+  //if setMode is on day 
+  else if(setMode == "day")
+  {
+    //toggles setMode to year
+    setMode = "year";
+  }
+  //if setMode is on year 
+  else if(setMode == "year")
+  {
+    //toggles setMode to hours
+    setMode = "hours";
+  }
+  //if setMode is on hours 
+  else if(setMode == "hours")
+  {
+	  //toggles setMode to minutes
+    setMode = "minutes";
   }
   //if setMode is minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
-	  //toggles setMode to second 
-    setMode = "second";
-	//switch image to seconds image 
-    document.getElementById("clock-picture").src="clock-set-seconds.png";
+	  //toggles setMode to seconds
+    setMode = "seconds";
   }
   //otherwise, setMode is seconds 
   else
   {
-	  //toggles setMode to hours 
-    setMode = "hour";
-	//switch image to hours image 
-    document.getElementById("clock-picture").src="clock-set-hour.png";
+	  //toggles setMode to month 
+    setMode = "month";
   }
+
+  $("#timePart").html(setMode);
 }
 
 /**
@@ -190,25 +214,50 @@ var flashTime = function(){
  * @type function
  * @function incrementTime 
  * @pre clock is in setting mode 
- * @post will increment the hour, minute, or second based on setMode 
- * @summary will add one to the hour minute or second based on setMode, and increment the next interval if needed
+ * @post will increment the hours, minutes, or seconds based on setMode 
+ * @summary will add one to the hours minutes or seconds based on setMode, and increment the next interval if needed
  */
 var incrementTime = function() {
-	//if set mode is effecting the hour 
-  if(setMode == "hour")
+	//if set mode is effecting the days
+    document.getElementById("time").hidden = false;
+  if(setMode == "month")
+  {
+    //add one to current days 
+    currentTime.setMonth((currentTime.getMonth() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "day")
+  {
+    //add one to current day
+    currentTime.setDate((currentTime.getDate() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "year")
+  {
+    //add one to current year 
+    currentTime.setYear((currentTime.getFullYear() + 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "hours")
   {
 	  //add one to current hours 
     currentTime.setHours((currentTime.getHours() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
 	  //add one to current minutes 
     currentTime.setMinutes((currentTime.getMinutes() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options); 
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -217,7 +266,7 @@ var incrementTime = function() {
   {
 	  //add one to current seconds 
     currentTime.setSeconds((currentTime.getSeconds() + 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -227,25 +276,50 @@ var incrementTime = function() {
  * @type function
  * @function decrementTime 
  * @pre clock is in setting mode 
- * @post will decrement the hour, minute, or second based on setMode 
- * @summary will subtract one from the hour minute or second based on setMode, and decrement the next interval if needed
+ * @post will decrement the hours, minutes, or seconds based on setMode 
+ * @summary will subtract one from the hours minutes or seconds based on setMode, and decrement the next interval if needed
  */
 var decrementTime = function() {
 	//if set mode is effecting hours 
-  if(setMode == "hour")
+    document.getElementById("time").hidden = false;
+  if(setMode == "month")
+  {
+    //add one to current days 
+    currentTime.setMonth((currentTime.getMonth() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "day")
+  {
+    //add one to current day
+    currentTime.setDate((currentTime.getDate() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "year")
+  {
+    //add one to current year 
+    currentTime.setYear((currentTime.getFullYear() - 1));
+    options = setOptions(milTime);
+    lastTime = currentTime.toLocaleTimeString('en-US', options);
+    document.getElementById("time").innerHTML = lastTime;
+  }
+  else if(setMode == "hours")
   {
 	  //subtract one from current hours 
     currentTime.setHours((currentTime.getHours() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
   //if set mode is effecting minutes 
-  else if(setMode == "minute")
+  else if(setMode == "minutes")
   {
 	  //subtract one from current minutes 
     currentTime.setMinutes((currentTime.getMinutes() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -254,7 +328,7 @@ var decrementTime = function() {
   {
 	  //subract one from current seconds 
     currentTime.setSeconds((currentTime.getSeconds() - 1));
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
   }
@@ -270,9 +344,11 @@ var decrementTime = function() {
 var set24hrs = function () {
 
     milTime = true;
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
+    $("#toggleMode").attr("onclick","set12hrs()");
+    $("#toggleMode").html("See in 12 hours mode");
 
 }
 
@@ -286,9 +362,11 @@ var set24hrs = function () {
 var set12hrs = function () {
 
     milTime = false;
-    options = {hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: !milTime};
+    options = setOptions(milTime);
     lastTime = currentTime.toLocaleTimeString('en-US', options);
     document.getElementById("time").innerHTML = lastTime;
+    $("#toggleMode").attr("onclick","set24hrs()");
+    $("#toggleMode").html("See in 24 hours mode");
 }
 
 /**
@@ -300,35 +378,14 @@ var set12hrs = function () {
  */
 var toggleSet = function(){
 	//set setmode to hour 
-  setMode = "hour";
-	//if it's changed from being set to running 
-  if (!run) {
-	  //it's now running 
-    run = true;
-	//go to base
-    document.getElementById("clock-picture").src="clock-base-updated.png";
-	//hide setting buttons, don't allow for anything to happen while clicking 
-    document.getElementById('minbtn').hidden = true;
-    document.getElementById('minbtn').onclick = '';
-    document.getElementById('addbtn').hidden = true;
-    document.getElementById('addbtn').onclick = '';
-    document.getElementById('typebtn').hidden = true;
-    document.getElementById('typebtn').onclick = '';
-
-    }
-  else {
-	  //now it's being set 
-    run = false;
-	//show hour setting page 
-    document.getElementById("clock-picture").src="clock-set-hour.png";
-	//display setting buttons, react to user clicking buttons 
-    document.getElementById('minbtn').hidden = false;
-    document.getElementById('minbtn').onclick = decrementTime;
-    document.getElementById('addbtn').hidden = false;
-    document.getElementById('addbtn').onclick = incrementTime;
-    document.getElementById('typebtn').hidden = false;
-    document.getElementById('typebtn').onclick = toggleType;
-  }
+  setMode = "month";
+	
+  // toggle running state 
+  run = !run;
+  
+  // toggle panel settings and set button
+  $("#settingsPanel").toggle();
+  $("#setbtn").toggle();
 }
 
 /**
@@ -356,13 +413,13 @@ var setTime = function(hours, minutes, seconds){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#decrementTime">decrementTime</a></li><li><a href="global.html#flashTime">flashTime</a></li><li><a href="global.html#incrementTime">incrementTime</a></li><li><a href="global.html#lastTime">lastTime</a></li><li><a href="global.html#milTime">milTime</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#set12hrs">set12hrs</a></li><li><a href="global.html#set24hrs">set24hrs</a></li><li><a href="global.html#setMode">setMode</a></li><li><a href="global.html#setTime">setTime</a></li><li><a href="global.html#timer">timer</a></li><li><a href="global.html#toggleSet">toggleSet</a></li><li><a href="global.html#toggleType">toggleType</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#currentTime">currentTime</a></li><li><a href="global.html#decrementTime">decrementTime</a></li><li><a href="global.html#flashTime">flashTime</a></li><li><a href="global.html#incrementTime">incrementTime</a></li><li><a href="global.html#lastTime">lastTime</a></li><li><a href="global.html#milTime">milTime</a></li><li><a href="global.html#on">on</a></li><li><a href="global.html#options">options</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#set12hrs">set12hrs</a></li><li><a href="global.html#set24hrs">set24hrs</a></li><li><a href="global.html#setMode">setMode</a></li><li><a href="global.html#setOptions">setOptions</a></li><li><a href="global.html#setTime">setTime</a></li><li><a href="global.html#timer">timer</a></li><li><a href="global.html#toggleSet">toggleSet</a></li><li><a href="global.html#toggleType">toggleType</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Feb 15 2016 06:33:07 GMT+0800 (Taipei Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 06 2016 18:06:34 GMT-0600 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
